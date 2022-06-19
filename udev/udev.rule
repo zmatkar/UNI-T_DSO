@@ -1,0 +1,2 @@
+# UNI-T access
+ATTRS{idVendor}=="5656", ATTRS{idProduct}=="0832", MODE="0660", GROUP="users" 

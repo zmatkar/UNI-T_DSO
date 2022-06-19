@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>745</width>
+    <height>777</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>DSO screenshoter</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/icon2/icon2.png</normaloff>:/icon2/icon2.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="DSO_View" name="gwScreen">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>640</width>
+        <height>480</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>6400</width>
+        <height>4800</height>
+       </size>
+      </property>
+      <property name="interactive">
+       <bool>true</bool>
+      </property>
+      <property name="dragMode">
+       <enum>QGraphicsView::ScrollHandDrag</enum>
+      </property>
+      <property name="transformationAnchor">
+       <enum>QGraphicsView::AnchorUnderMouse</enum>
+      </property>
+      <property name="resizeAnchor">
+       <enum>QGraphicsView::AnchorUnderMouse</enum>
+      </property>
+      <property name="viewportUpdateMode">
+       <enum>QGraphicsView::SmartViewportUpdate</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Actions</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="dso_load">
+           <property name="toolTip">
+            <string>Loads data from DSO and paint wave by yourselves</string>
+           </property>
+           <property name="text">
+            <string>Load data from DSO</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="saveCSV">
+           <property name="text">
+            <string>Save data to CSV</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="screen_load">
+           <property name="toolTip">
+            <string>Load screen data from DSO and paint them to program view</string>
+           </property>
+           <property name="text">
+            <string>Screenshot from DSO</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="saveScreen">
+           <property name="toolTip">
+            <string>Save programs view to file</string>
+           </property>
+           <property name="text">
+            <string>Save program screen</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>Settings</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QCheckBox" name="enableAutoUpdate">
+         <property name="text">
+          <string>Auto load data from DSO</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="updateValue">
+         <property name="suffix">
+          <string>ms</string>
+         </property>
+         <property name="minimum">
+          <number>50</number>
+         </property>
+         <property name="maximum">
+          <number>9999</number>
+         </property>
+         <property name="value">
+          <number>1000</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>745</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAction">
+    <property name="title">
+     <string>Action</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuAction"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DSO_View</class>
+   <extends>QGraphicsView</extends>
+   <header>graphic.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>menubar</sender>
+   <signal>triggered(QAction*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>processAction(QAction*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>22</x>
+     <y>14</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dso_load</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadDataFromDso()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>643</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>556</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>screen_load</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadScreenFromDso()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>552</x>
+     <y>643</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>326</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveScreen</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveProgramScreen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>731</x>
+     <y>643</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>537</x>
+     <y>554</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>enableAutoUpdate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setAutoUpdate(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>730</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>93</x>
+     <y>667</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>enableAutoUpdate</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>updateValue</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>203</x>
+     <y>730</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>737</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>screen_load</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>enableAutoUpdate</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>552</x>
+     <y>643</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>133</x>
+     <y>730</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveCSV</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveDataToCSV()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>370</x>
+     <y>643</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>292</x>
+     <y>669</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>enableAutoUpdate</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadDataFromDso()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>93</x>
+     <y>730</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>667</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>processAction(QAction*)</slot>
+  <slot>loadDataFromDso()</slot>
+  <slot>loadScreenFromDso()</slot>
+  <slot>saveProgramScreen()</slot>
+  <slot>setAutoUpdate(bool)</slot>
+  <slot>saveDataToCSV()</slot>
+ </slots>
+</ui>
