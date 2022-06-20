@@ -5,4 +5,4 @@ Use build.sh script to compile *.ui files to .py.
 Then run simpleDSO.py
 
 ## Requires:
-pyQt5, pylibusb and Python 3.x
+PyQt5, Python bindings to libusb and Python 3.x
